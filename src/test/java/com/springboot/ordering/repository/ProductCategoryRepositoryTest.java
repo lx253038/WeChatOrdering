@@ -1,9 +1,7 @@
 package com.springboot.ordering.repository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,11 +16,12 @@ import com.springboot.ordering.model.ProductCategory;
 public class ProductCategoryRepositoryTest {
     @Autowired
     private ProductCategoryRepository repository;
+
     @Test
-    public void findOneTest(){
-        ProductCategory category= new ProductCategory();
-        category= repository.findById(11).get();
-        category.setCategoryName("haodggj活动很好的");
+    public void findOneTest() {
+        ProductCategory category = new ProductCategory();
+        category = repository.findById(11).get();
+        category.setCategoryName("haodggj��ܺõ�");
         category.setCategoryType(13);
         System.out.println(category);
         repository.save(category);
@@ -30,10 +29,11 @@ public class ProductCategoryRepositoryTest {
 
         System.out.println(category.getCategoryId());
     }
+
     @Test
-    public void fingByCategory(){
-        List<Integer> list= Arrays.asList(1,2,3);
-       List<ProductCategory> result= repository.findByCategoryTypeIn(list);
+    public void fingByCategory() {
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        List<ProductCategory> result = repository.findByCategoryTypeIn(list);
         System.out.println(result.size());
     }
 

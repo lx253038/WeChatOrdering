@@ -9,21 +9,21 @@ import javax.persistence.Id;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * å•†å“ç±»ç›®è¡¨
+ * ÉÌÆ·ÀàÄ¿±í
  */
 @Entity
 @DynamicUpdate
 
 public class ProductCategory {
-    /** ç±»ç›®id. */
+    /** ÀàÄ¿id. */
     @Id
     @GeneratedValue
     private Integer categoryId;
 
-    /** ç±»ç›®åå­—. */
+    /** ÀàÄ¿Ãû×Ö. */
     private String categoryName;
 
-    /** ç±»ç›®ç¼–å·. */
+    /** ÀàÄ¿±àºÅ. */
     private Integer categoryType;
 
     private Date createTime;
