@@ -3,6 +3,8 @@ package com.springboot.ordering.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.springboot.ordering.model.ProductInfo;
@@ -20,8 +22,8 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
-    public List<ProductInfo> listAll() {
-        return repository.findAll();
+    public Page<ProductInfo> listAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

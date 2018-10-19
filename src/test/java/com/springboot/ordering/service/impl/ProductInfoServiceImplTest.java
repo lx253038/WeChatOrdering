@@ -7,10 +7,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.springboot.ordering.model.ProductInfo;
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,8 +28,9 @@ public class ProductInfoServiceImplTest {
 
     @Test
     public void listAll() {
-        List<ProductInfo> productInfos = service.listAll();
-        System.out.println(productInfos.size());
+        PageRequest request = new PageRequest(0, 2);
+        Page<ProductInfo> productInfos = service.listAll(request);
+        System.out.println(productInfos.getTotalElements());
     }
 
     @Test
