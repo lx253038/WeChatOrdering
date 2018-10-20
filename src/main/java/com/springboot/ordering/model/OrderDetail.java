@@ -100,4 +100,17 @@ public class OrderDetail {
     public void setProductIcon(String productIcon) {
         this.productIcon = productIcon;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "detailId='" + detailId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productQuantity=" + productQuantity +
+                ", productIcon='" + productIcon + '\'' +
+                '}';
+    }
 }

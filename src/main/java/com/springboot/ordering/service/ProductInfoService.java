@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.springboot.ordering.model.OrderDetail;
 import com.springboot.ordering.model.ProductInfo;
 
 public interface ProductInfoService {
@@ -15,4 +16,11 @@ public interface ProductInfoService {
     List<ProductInfo> findByProductStatus(Integer state);
 
     ProductInfo save(ProductInfo productInfo);
+
+    //¼Ó¿â´æ
+    void increaseStock(List<OrderDetail> orderDetails);
+
+
+    //¼õ¿â´æ
+    void decreaseStock(List<OrderDetail> orderDetails);
 }
