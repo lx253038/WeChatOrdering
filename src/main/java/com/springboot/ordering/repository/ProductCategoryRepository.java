@@ -8,4 +8,6 @@ import com.springboot.ordering.model.ProductCategory;
 
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory,Integer> {
     List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList);
+
+    List<ProductCategory> findByCategoryType(Integer categoryType);
 }

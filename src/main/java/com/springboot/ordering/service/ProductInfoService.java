@@ -15,8 +15,12 @@ public interface ProductInfoService {
 
     List<ProductInfo> findByProductStatus(Integer state);
 
+    List<ProductInfo> findByCategoryType(Integer state);
+
     ProductInfo save(ProductInfo productInfo);
 
+    //É¾³ý
+    void delete(String id);
     //¼Ó¿â´æ
     void increaseStock(List<OrderDetail> orderDetails);
 

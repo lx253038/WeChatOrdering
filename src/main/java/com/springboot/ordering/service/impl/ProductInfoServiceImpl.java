@@ -36,8 +36,18 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
+    public List<ProductInfo> findByCategoryType(Integer state) {
+        return repository.findByCategoryType(state);
+    }
+
+    @Override
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
+    }
+
+    @Override
+    public void delete(String id) {
+        repository.deleteById(id);
     }
 
     @Override

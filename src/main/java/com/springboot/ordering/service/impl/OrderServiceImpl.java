@@ -37,7 +37,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ProductInfoService productInfoService;
 
-
+    /**
+     * 创建订单
+     *
+     * @param orderDTO
+     * @return
+     */
     @Override
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
@@ -75,6 +80,12 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+     * 根据订单ID查询单个订单
+     *
+     * @param orderId
+     * @return
+     */
     @Override
     public OrderDTO findOne(String orderId) {
         OrderMaster orderMaster = orderMasterRepository.findByOrderId(orderId);
@@ -89,15 +100,29 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+     * 查询某个用户的所有订单
+     *
+     * @param openid
+     * @param pageable
+     * @return
+     */
     @Override
     public Page<OrderMaster> findList(String openid, Pageable pageable) {
         Page<OrderMaster> orderMasters = orderMasterRepository.findByBuyerOpenid(openid, pageable);
         return orderMasters;
     }
 
+    /**
+     * 取消订单
+     * @param orderDTO
+     * @return
+     */
+
     @Override
+    @Transactional
     public OrderDTO cancel(OrderDTO orderDTO) {
-        if (orderDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
             throw new SellException(ExceptionCodeEnums.ORDER_STATUS_ERROR);
         }
         //修改订单状态
@@ -115,9 +140,14 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    /**
+     * 完成订单
+     * @param orderDTO
+     * @return
+     */
     @Override
     public OrderDTO finish(OrderDTO orderDTO) {
-        if (orderDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnums.NEW.getCode())) {
             throw new SellException(ExceptionCodeEnums.ORDER_STATUS_ERROR);
         }
         //修改订单状态
@@ -130,6 +160,11 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    /**
+     * 支付订单
+     * @param orderDTO
+     * @return
+     */
     @Override
     public OrderDTO pay(OrderDTO orderDTO) {
 
@@ -148,5 +183,17 @@ public class OrderServiceImpl implements OrderService {
         BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMasterRepository.save(orderMaster);
         return orderDTO;
+    }
+
+    /**
+     * 卖家查询所有订单
+     *
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<OrderMaster> listAll(Pageable pageable) {
+        Page<OrderMaster> orderMasters = orderMasterRepository.findAll(pageable);
+        return orderMasters;
     }
 }

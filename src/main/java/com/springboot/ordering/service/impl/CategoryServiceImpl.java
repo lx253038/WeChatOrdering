@@ -3,6 +3,8 @@ package com.springboot.ordering.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.springboot.ordering.model.ProductCategory;
@@ -13,6 +15,11 @@ import com.springboot.ordering.service.CategoryService;
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     ProductCategoryRepository  repository;
+
+    @Override
+    public Page<ProductCategory> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
 
     @Override
     public ProductCategory findOne(Integer id) {
@@ -30,7 +37,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<ProductCategory> findByCategoryType(Integer categoryType) {
+        return repository.findByCategoryType(categoryType);
+    }
+
+    @Override
     public ProductCategory save(ProductCategory productCategory) {
         return repository.save(productCategory);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.deleteById(id);
     }
 }
